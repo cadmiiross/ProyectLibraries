@@ -18,7 +18,7 @@ export default function Navigation(){
             <Tab.Navigator
                 initialRouteName='libraries'
                 tabBarOptions={{
-                    inactiveTintColor: '#646464',
+                    inactiveTintColor: '#088A68',
                     activeTintColor: '#D358F7'
                 }} 
                 screenOptions={({ route }) => ({
