@@ -18,7 +18,7 @@ export default function Navigation(){
             <Tab.Navigator
                 initialRouteName='libraries'
                 tabBarOptions={{
-                    inactiveTintColor: '#088A68',
+                    inactiveTintColor: '#6E2C00',
                     activeTintColor: '#D358F7'
                 }} 
                 screenOptions={({ route }) => ({
@@ -72,7 +72,7 @@ function screenOptions(route, color){
             IconName='magnify'
             break
         case 'account':
-            IconName='home-outline'
+            IconName='account-circle'
             break
     }
     return(

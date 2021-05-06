@@ -7,7 +7,7 @@ export default function Login(){
     return(
     <ScrollView>
         <Image
-           source={require('../../../assets/img/hay-monton-libros-antiguos_23-2147767700.jpg')}
+           source={require('../../../assets/img/-pluma-sobre-viejo-libro.jpg')}
            resizeMode='contain'
            style={styles.logo}
     />
@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
     logo:{
         width:'100%',
         height:150,
-        marginTop:20
+        marginTop:20,
+        marginBottom:40
     },
     viewContainer:{
         marginRight:40,
@@ -51,11 +52,11 @@ const styles = StyleSheet.create({
         marginRight:10
     },
     linkRegister:{
-        color:'#00a680',
+        color:'#D358F7',
         fontWeight:'bold'
     },
     divider:{
-        backgroundColor:'#00a680',
+        backgroundColor:'#D358F7',
         margin:40
     }
 

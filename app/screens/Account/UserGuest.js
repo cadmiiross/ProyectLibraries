@@ -11,11 +11,11 @@ export default function UserGuest(){
         <ScrollView style={styles.container}>
             <Image
                 style={styles.stretch}
-                source={require('../../../assets/img/IMG_0216.JPG')}
+                source={require('../../../assets/img/antiguo-reloj.jpg')}
             />
             <Text style={styles.title}>Ingresa a tu Perfil</Text>
             <Text style={styles.description}>
-                Busca y visualiza las mejores librerias y comenta tu experiencia
+                Busca y visualiza las mejores librerias y comenta tu experiencia.
             </Text>
             <View style={styles.viewBtn}>
                 <Button
@@ -31,32 +31,36 @@ export default function UserGuest(){
 
 const styles = StyleSheet.create({
     container:{
-        paddingTop: 10
+        paddingTop: 20
     },
     stretch:{
-        width: '100%',
-        height:300,
-        rezizeMode: 'contain',
-        marginBottom: 40    
+        width:'100%',
+        height:160,
+        resizeMode:'contain',
+        marginTop: 20,
+        marginBottom: 40
     },
     title:{
         fontWeight:'bold',
         fontSize:19,
         marginBotton:10,
-        textAling:'center'  
+        textAlign:'center'  
     },
     description:{
         marginBotton:20,
-        textAling:'center'
+        marginTop:20,
+        textAlign:'center'
     },
     viewBtn:{
         flex:1,
         alignItems:'center' 
     },
     btnStyle:{
-        backgroundColor:'#00a680'
+        marginBotton:20,
+        marginTop:20,
+        backgroundColor:'#C39BD3'
     },
     btnContainer:{
         width:'70%'
-    }
+    },
 })
