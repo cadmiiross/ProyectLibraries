@@ -63,10 +63,10 @@ function screenOptions(route, color){
             IconName='book-open-outline'
             break
         case 'favorites':
-            IconName='heart-outline'
+            IconName='heart-multiple-outline'
             break
         case 'top-libraries':
-            IconName='star-outline'
+            IconName='diamond-outline'
             break
         case 'search':
             IconName='magnify'
