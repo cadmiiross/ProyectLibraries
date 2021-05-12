@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     inputForm:{
         width: '90%',
         marginTop:20,
-        margingLeft:10,
+        marginLeft:10,
         marginRight:10
     },
     btnContainerLogin:{
