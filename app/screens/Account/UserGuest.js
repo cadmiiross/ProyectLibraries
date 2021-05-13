@@ -43,12 +43,11 @@ const styles = StyleSheet.create({
     title:{
         fontWeight:'bold',
         fontSize:19,
-        marginBotton:10,
         textAlign:'center'  
     },
     description:{
-        marginBotton:20,
         marginTop:20,
+        marginBottom: 20,
         textAlign:'center'
     },
     viewBtn:{
@@ -56,8 +55,8 @@ const styles = StyleSheet.create({
         alignItems:'center' 
     },
     btnStyle:{
-        marginBotton:20,
         marginTop:20,
+        marginBottom: 20,
         backgroundColor:'#C39BD3'
     },
     btnContainer:{

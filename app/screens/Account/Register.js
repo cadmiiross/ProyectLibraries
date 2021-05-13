@@ -23,7 +23,7 @@ export default function Register(){
 
 const styles = StyleSheet.create({
     viewForms:{
-        marginright:40,
+        marginRight:40,
         marginLeft:40
     },
     logo:{

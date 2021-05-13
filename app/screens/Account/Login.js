@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     },
     textRegister:{
         marginTop:15,
-        margingLeft:10,
         marginRight:10,
+        marginLeft:10,
         textAlign:'center'
     },
     linkRegister:{

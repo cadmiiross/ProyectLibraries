@@ -95,6 +95,7 @@ function defaultFormValues(){
     }
 }
 
+
 const styles = StyleSheet.create({
     formContainer:{
         marginTop:30
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
     inputForm:{
         width: '90%',
         marginTop:20,
-        marginLeft:10,
+        marginLeft: 10,
         marginRight:10
     },
     btnContainerLogin:{
