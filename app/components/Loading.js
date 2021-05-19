@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, ActivityIndicator} from 'react-native'
+import { StyleSheet, View, Text,  ActivityIndicator} from 'react-native'
 import {Overlay} from 'react-native-elements'
 
 export default function Loading(props){
@@ -23,7 +23,7 @@ export default function Loading(props){
 const styles = StyleSheet.create({
     overlay:{
         height:100,
-        width:200,
+        width:'90%',
         backgroundColor: '#fff',
         borderColor: '#C39BD3',
         borderWidth: 2,
@@ -32,6 +32,10 @@ const styles = StyleSheet.create({
     text:{
         color: '#c69b7c',
         textTransform: 'uppercase',
-        marginTop: 10
+        marginTop: 10,
+        fontSize: 30,
+        paddingVertical: 10,
+        alignSelf: 'center',
+        textAlign: 'center',
     }
 })
