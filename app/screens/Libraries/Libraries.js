@@ -5,9 +5,9 @@ import {firebaseApp} from '../../utils/firebase'
 import firebase from 'firebase/app'
 import { useNavigation } from '@react-navigation/native' 
 
-export default function Libraries(props){
-    const {toastRef, setLoading} = props
-    const [user, setUser] = useState(null)
+export default function Libraries(){
+    const [user, setUser ] = useState(null)
+    const navigation = useNavigation()
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged((userInfo)=>{
@@ -15,24 +15,20 @@ export default function Libraries(props){
         })
     }, [])
 
-    function AddLibraries(){
-        const navigation = useNavigation()
-        return(
-            <View style={styles.viewBody}>
-                <Text>Libraries</Text>
-                     {user && (
-                     <Icon
-                         reverse
-                         type='material-community'
-                         name='plus'
-                         color='#00a68'
-                         containerStyle={styles.btnContainer}
-                         onPress={()=>navigation.navigate('addlibraries')}
-                        />
-                    )}
-            </View>
-        )
-    }
+    return(
+        <View style={styles.viewBody}>
+            <Text>Librerias</Text>
+            {user &&
+            <Icon
+            reverse
+                type= 'material-community'
+                name='plus'
+                color='#00a68'
+                containerStyle={styles.btnContainer}
+                onPress={()=>navigation.navigate('addlibraries')}
+            />}
+        </View>
+    )
     
 }
 
