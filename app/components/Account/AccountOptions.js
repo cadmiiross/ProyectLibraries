@@ -39,7 +39,7 @@ export default function AccountOptions(props) {
             case 'displayPassword':
                 setRenderComponent(
                     <ChangePasswordForm
-                        password={userInfo.password}
+                        email={userInfo.email}
                         setShowModal={setShowModal}
                         toastRef={toastRef}
                         setReloadUserInfo = {setReloadUserInfo}  

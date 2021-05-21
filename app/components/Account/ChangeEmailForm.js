@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native'
 import {Input, Button, Icon} from 'react-native-elements'
 import firebase from 'firebase'
 import {validateEmail} from '../../utils/validation'
+import {isEmpty} from 'lodash'
 
 
 export default function ChangeEmailForm(props){
@@ -17,9 +18,9 @@ export default function ChangeEmailForm(props){
     const onSubmit= ()=>{
         setError(null)
         if(!newEmail){
-            setError('El nombre no puede estar vacio')
+            setError('El email no puede estar vacio')
         } else if(email === newEmail){
-            setError('El nombre no puede ser igual al actual')
+            setError('El email no puede ser igual al actual')
         } else if(!validateEmail(newEmail)){
             setError('Email no valido')
         }else if(!password){
@@ -28,10 +29,7 @@ export default function ChangeEmailForm(props){
             setIsLoading(true)
             
             var user = firebase.auth().currentUser;
-            const credential = firebase.auth.EmailAuthProvider.credential(
-                email,
-                password
-            )
+            const credential = firebase.auth.EmailAuthProvider.credential(email, password)
                     
             user.reauthenticateWithCredential(credential).then(function() {
                 firebase   
@@ -60,7 +58,7 @@ export default function ChangeEmailForm(props){
     
 
     return(
-        <View>
+        <View style={styles.view}>
             <Input
                 placeholder='Nuevo Correo'
                 containerStyle={styles.input}

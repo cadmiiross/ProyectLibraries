@@ -14,7 +14,7 @@ export default function AddLibraries(){
         <View>
             <Text>AddLibraries</Text>
             <AddLibrariesForm toastRef={toastRef} setIsLoading={setIsLoading} navigation={navigation}/>
-            <Loading isVisible={isLoading} text={'Cargando...'}/>
+            
             <Toast ref={toastRef}/>
         </View>
     )

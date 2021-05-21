@@ -4,7 +4,9 @@ import {Button} from 'react-native-elements'
 import Toast from 'react-native-toast-message'
 import firebase from 'firebase'
 import InfoUser from '../../components/Account/InfoUser'
+import Loading from '../../components/Loading'
 import AccountOptions from '../../components/Account/AccountOptions'
+
 
 export default function UserLogged(){
     const [userInfo, setUserInfo] = useState(null)

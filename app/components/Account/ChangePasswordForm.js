@@ -17,7 +17,7 @@ export default function ChangePasswordForm(props) {
         if(!newPassword) {
             setError('El campo no debe ser vacio')
         }else if(password === newPassword) {
-            setError('Tu contraseña no debe ser igual al actual')
+            setError('Tu contraseña no debe ser igual a la actual')
         }else if(newPassword.length < 6) {
             setError('Debes ingresar una contraseña con un mínimo de 6 caracteres')
         }else if(!password) {
@@ -38,7 +38,8 @@ export default function ChangePasswordForm(props) {
                     setShowModal(false)
                 }).catch((error)=>{console.log(error) 
                     setIsLoading(false)})
-            }).catch(function(error){setIsLoading(false)
+            }).catch(function(error){
+                setIsLoading(false)
                 setErrorPassword('La contraseña no es correcta')
             });
         }
@@ -56,7 +57,7 @@ export default function ChangePasswordForm(props) {
                     <Icon
                         type='material-community'
                         name={ showPassword ? 'eye-off-outline' : 'eye-outline'}
-                        iconStyle={{color:'#218876'}}
+                        iconStyle={{color:'#c69b7c'}}
                         onPress={()=> setShowPassword(!showPassword)}
                     />
                 }
@@ -72,7 +73,7 @@ export default function ChangePasswordForm(props) {
                     <Icon
                         type='material-community'
                         name={ showPassword ? 'eye-off-outline' : 'eye-outline'}
-                        iconStyle={{color:'#218876'}}
+                        iconStyle={{color:'#c69b7c'}}
                         onPress={()=> setShowPassword(!showPassword)}
                     />
                 }
@@ -104,6 +105,6 @@ const styles = StyleSheet.create({
         width: '95%'
     },
     tbn:{
-        backgroundColor: '#218876'
+        backgroundColor: '#c69b7c'
     }
 })
