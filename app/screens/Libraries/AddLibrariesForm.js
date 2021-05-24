@@ -7,6 +7,7 @@ import * as Location from 'expo-location'
 import * as ImagePicker from 'expo-image-picker'
 import {map, size} from 'lodash'
 import firebase from 'firebase'
+import MapView from 'react-native-maps'
 
 export default function AddLibrariesForm(props) {
         const {toastRef, setIsLoading} = props
@@ -18,6 +19,9 @@ export default function AddLibrariesForm(props) {
         const [errorDescripcion, setErrorDescripcion] = useState(null)
         const [isVisibleMap, setIsVisibleMap] = useState(false) 
         const [imagesSelected, setImagesSelected] = useState([])
+        const [locationLibraries, setLocationLibraries] = useState(null)
+        
+        
 
     
         const onSubmit = ()=>{
@@ -57,6 +61,19 @@ export default function AddLibrariesForm(props) {
                 console.log('Nombre de la libreria',nameLibrary)
                 console.log('Direccion de la libreria',direccion)
                 console.log('Descripcion de la libreria',description)
+                console.log('Localizacion:', locationLibraries)
+                if(!locate){
+                    console.log('Sin locacion')
+                }else{
+                    console.log('Locacion guardada')
+                }
+                toastRef.current.show({
+                    type: 'success',
+                    position: 'top',
+                    text1: 'Excelente',
+                    text2: 'Tu asunto se ha posteado',
+                    visibilityTime: 3000
+                })
             }
         }
 
@@ -71,6 +88,12 @@ export default function AddLibrariesForm(props) {
                 containerStyle={styles.input}
                 onChange={(e)=>setNameLibrary(e.nativeEvent.text)}
                 errorMessage={errorLibrary}
+                rightIcon={{
+                    type:'material-community',
+                    name:'book',
+                    color: '#c69b7c',
+                    onPress:()=> setIsVisibleMap(true)
+                }}
             />
             <Input
                 placeholder='Dirección'
@@ -84,6 +107,7 @@ export default function AddLibrariesForm(props) {
                     color: '#c69b7c',
                     onPress:()=> setIsVisibleMap(true)
                 }}
+                onChange={(e)=>setLocation(e.nativeEvent.text)}
             />
                 <Input
                 placeholder='Descripción'
@@ -92,7 +116,14 @@ export default function AddLibrariesForm(props) {
                 containerStyle={styles.input}
                 onChange={(e)=>setDescription(e.nativeEvent.text)}
                 errorMessage={errorDescripcion}
+                rightIcon={{
+                    type:'material-community',
+                    name:'border-color',
+                    color: '#c69b7c',
+                    onPress:()=> setIsVisibleMap(true)
+                }}
             />
+
             <UploadImage
                 toastRef={toastRef}
                 imagesSelected={imagesSelected}
@@ -107,6 +138,7 @@ export default function AddLibrariesForm(props) {
             <Map
                 isVisibleMap={isVisibleMap}
                 setIsVisibleMap={setIsVisibleMap}
+                setLocationLibraries={setLocationLibraries}
             />
         </View>
 
@@ -118,7 +150,7 @@ export default function AddLibrariesForm(props) {
 //Esta seccion pertenece a MAP 
 
 function Map(props){
-    const {isVisibleMap, setIsVisibleMap} = props
+    const {isVisibleMap, setIsVisibleMap, setLocationLibraries} = props
     const [location, setLocation] = useState(null)
 
     useEffect(() => {
@@ -131,15 +163,58 @@ function Map(props){
                 console.log(locate)
                 setLocation({
                     latitude: locate.coords.latitude,
-                    longitude: locate.coords.longitud
+                    longitude: locate.coords.longitud,
+                    latitudeDelta: 0.001,
+                    longitudeDelta: 0.001
                 })
             }
         })()
-    }, [])    
+    }, [])   
+    
+
+    const confirmLocation=()=>{
+        setLocationLibraries(location)
+        setIsVisibleMap(false)
+        console.log(location) 
+    }
+
 
     return(
         <Modal isVisible={isVisibleMap} setIsVisible={setIsVisibleMap}>
-            <Text>Mapa.....</Text>
+            <View>
+                {location&&(
+                   <MapView
+                      style={styles.mapStyle}
+                      initialRegion={location}
+                      showsUserLocation={true}
+                      onRegionChange={(region)=>setLocation(region)}
+                    >
+            
+                       <MapView.Marker
+                            coordinate={{
+                               latitude:location.latitude,
+                               longitude:location.longitude 
+                            }}
+                            draggable
+                        />
+                    </MapView>
+                )}
+                <View style={styles.viewMapBtn}>
+                    <Button
+                        title='Guardar Ubicacion'
+                        conteinerStyle={styles.viewMapBtnContainerSave}
+                        buttonStyle={styles.viewMapBtnSave}
+                        onPress={confirmLocation}
+                    />
+                    <Button
+                        title='Cancelar Ubicacion'
+                        conteinerStyle={styles.viewMapBtnContainerCancel}
+                        buttonStyle={styles.viewMapBtnCancel}
+                        onPress={()=>setIsVisibleMap(false)}
+                    />
+
+                </View>
+            </View>
         </Modal>
     )
 }
@@ -155,7 +230,7 @@ function UploadImage(props) {
         const imageSelect = async() => {
             const response = await loadImageFromGallery([4, 3])
             if (!response.status) {
-                toastRef.current.show("No seleccionastes nada", 3000)
+                toastRef.current.show("No se ha seleccionado ninguna imagen", 3000)
                 return
             }
             setImagesSelected([...imagesSelected, response.image])
@@ -168,7 +243,7 @@ function UploadImage(props) {
             style={styles.viewImage}
         >
             {
-                size(imagesSelected) < 8 && (
+                size(imagesSelected) < 4 && (
                     <Icon
                         type='material-community'
                         name='camera'
@@ -250,6 +325,27 @@ const styles = StyleSheet.create({
     miniatureStyle:{
         width: 70,
         height: 70,
-        marginRight: 10,
+        marginRight: 10
+    },
+    mapStyle:{
+        width: '100%',
+        height: 550
+    },
+    viewMapBtn:{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 10
+    },
+    viewMapBtnContainerSave:{
+      paddingRight: 5  
+    },
+    viewMapBtnSave:{
+      backgroundColor: '#00a680'  
+    },
+    viewMapBtnContainerCancel:{
+        paddingRight: 5
+    },
+    viewMapBtnCancel:{
+        backgroundColor: '#a60d0d'
     }
 })
